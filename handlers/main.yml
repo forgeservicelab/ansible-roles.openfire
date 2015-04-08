@@ -1,0 +1,6 @@
+---
+# handlers file for openfire
+- name: restart openfire
+  service:
+    name: openfire
+    state: restarted

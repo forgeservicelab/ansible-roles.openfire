@@ -1,0 +1,38 @@
+---
+# tasks file for openfire
+- name: Get Openfire
+  get_url:
+    url: http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_3.9.3_all.deb
+    dest: /tmp/openfire.deb
+
+- name: Install Openfire
+  apt:
+    update_cache: yes
+    deb: /tmp/openfire.deb
+
+- name: upload configuration
+  template:
+    src: openfire/openfire.xml
+    dest: /etc/openfire/openfire.xml
+    owner: openfire
+    group: openfire
+  when: not new_install
+  notify: restart openfire
+
+- name: upload security assets
+  unarchive:
+    src: openfire/sec.tgz
+    dest: /etc/openfire/
+    owner: openfire
+    group: openfire
+  when: not new_install
+  notify: restart openfire
+
+- name: upload plugins
+  unarchive:
+    src: openfire/plugins.tgz
+    dest: /var/lib/openfire/
+    owner: openfire
+    group: openfire
+  when: not new_install
+  notify: restart openfire
