@@ -5,9 +5,13 @@
     url: http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_3.9.3_all.deb
     dest: /tmp/openfire.deb
 
-- name: Install Openfire
+- name: Install java 7
   apt:
     update_cache: yes
+    name: openjdk-7-jre-headless
+
+- name: Install Openfire
+  apt:
     deb: /tmp/openfire.deb
 
 - name: upload configuration
