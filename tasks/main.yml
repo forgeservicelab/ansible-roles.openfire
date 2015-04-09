@@ -8,7 +8,7 @@
 - name: Install java 7
   apt:
     update_cache: yes
-    name: openjdk-7-jre-headless
+    name: openjdk-7-jre
 
 - name: Install Openfire
   apt:
