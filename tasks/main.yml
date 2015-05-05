@@ -2,7 +2,7 @@
 # tasks file for openfire
 - name: Get Openfire
   get_url:
-    url: http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_3.9.3_all.deb
+    url: "http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_{{ openfire_version }}_all.deb"
     dest: /tmp/openfire.deb
 
 - name: Install java 7
