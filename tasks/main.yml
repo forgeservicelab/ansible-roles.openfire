@@ -10,41 +10,7 @@
     update_cache: yes
     name: openjdk-7-jre
 
-- name: Ensure target directories exist
-  file:
-    path: "{{ item }}"
-    state: directory
-  with_items:
-    - /etc/openfire
-    - /var/lib/openfire
-
-- name: upload configuration
-  template:
-    src: openfire/openfire.xml
-    dest: /etc/openfire/openfire.xml
-    owner: openfire
-    group: openfire
-  when: not new_install
-  notify: restart openfire
-
-- name: upload security assets
-  unarchive:
-    src: openfire/sec.tgz
-    dest: /etc/openfire/
-    owner: openfire
-    group: openfire
-  when: not new_install
-  notify: restart openfire
-
-- name: upload plugins
-  unarchive:
-    src: openfire/plugins.tgz
-    dest: /var/lib/openfire/
-    owner: openfire
-    group: openfire
-  when: not new_install
-  notify: restart openfire
-
 - name: Install Openfire
   apt:
     deb: "/tmp/openfire_{{ openfire_version }}.deb"
+    dpkg_opts: force-confdef,force-confold
