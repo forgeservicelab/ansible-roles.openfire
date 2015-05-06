@@ -13,7 +13,6 @@
 - name: Install Openfire
   apt:
     deb: "/tmp/openfire_{{ openfire_version }}.deb"
-    dpkg_options: force-confdef,force-confold
 
 - name: upload configuration
   template:
