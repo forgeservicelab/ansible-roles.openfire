@@ -3,7 +3,7 @@
 - name: Get Openfire
   get_url:
     url: "http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_{{ openfire_version }}_all.deb"
-    dest: /tmp/openfire.deb
+    dest: "/tmp/openfire_{{ openfire_version }}.deb"
 
 - name: Install java 7
   apt:
@@ -12,7 +12,7 @@
 
 - name: Install Openfire
   apt:
-    deb: /tmp/openfire.deb
+    deb: "/tmp/openfire_{{ openfire_version }}.deb"
 
 - name: upload configuration
   template:
