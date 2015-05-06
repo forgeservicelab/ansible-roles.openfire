@@ -11,10 +11,9 @@
     name: openjdk-7-jre
 
 - name: Install Openfire
-  # apt:
-    # deb: "/tmp/openfire_{{ openfire_version }}.deb"
-    # dpkg_options: force-confdef,force-confold
-  command: "dpkg --force-confdef --force-confold -i /tmp/openfire_{{ openfire_version }}.deb"
+  apt:
+    deb: "/tmp/openfire_{{ openfire_version }}.deb"
+    dpkg_options: force-confdef,force-confold
 
 - name: upload configuration
   template:
